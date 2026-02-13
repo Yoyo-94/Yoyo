@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From yoyo ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #ff9ecf, #ffd6ec);
+}
+
+.container {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  min-height: 260px;
+  overflow: hidden;
+}
+
+h1 {
+  color: #ff2e83;
+  margin-bottom: 30px;
+  font-size: 22px;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+#yesBtn {
+  background-color: #ff2e83;
+  color: white;
+}
+
+#yesBtn:hover {
+  transform: scale(1.08);
+}
+
+#noBtn {
+  background-color: #d9d9d9;
+  position: absolute;
+}
+
+.message {
+  font-size: 20px;
+  color: #ff2e83;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="box">
+  <h1>Will you be my Valentine? ❤️</h1>
+  <button id="yesBtn">Yes 💖</button>
+  <button id="noBtn">No 😅</button>
+</div>
+
+<script>
+const box = document.getElementById("box");
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+// وضع زر No في مكان ابتدائي
+noBtn.style.top = "140px";
+noBtn.style.left = "200px";
+
+yesBtn.addEventListener("click", function() {
+  box.innerHTML = "<div class='message'>You just made yoyo the happiest person alive ❤️</div>";
+});
+
+function moveButton() {
+  const boxRect = box.getBoundingClientRect();
+  const btnRect = noBtn.getBoundingClientRect();
+
+  const maxX = box.clientWidth - btnRect.width - 10;
+  const maxY = box.clientHeight - btnRect.height - 10;
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  noBtn.style.left = randomX + "px";
+  noBtn.style.top = randomY + "px";
+}
+
+// يهرب عند محاولة اللمس أو الاقتراب
+noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+</script>
+
+</body>
+</html>
